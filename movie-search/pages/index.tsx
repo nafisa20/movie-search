@@ -15,7 +15,6 @@ export default function Home() {
     setMovie(await res.json());
   }
 
-  console.log(movie.Response);
   return (
     <div>
       <div className="header">
