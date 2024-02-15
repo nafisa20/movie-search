@@ -15,6 +15,7 @@ export default function Home() {
     setMovie(await res.json());
   }
 
+  console.log(movie.Response);
   return (
     <div>
       <div className="header">
@@ -34,18 +35,22 @@ export default function Home() {
           <button onClick={() => getData()}>Search</button>
         </div>
       </div>
-      {Object.keys(movie).length > 0 && (
-        <div>
-          <img alt="Picture of the author" src={movie.Poster} />
-          <h1>
-            {movie.Title} ({movie.Year})
-          </h1>
-          <p>By {movie.Director}</p>
-          <p>Starring {movie.Actors}</p>
-          <p>{movie.Plot}</p>
-          <p>{movie.Awards}</p>
-          <p> rating: {movie.imdbRating}/10</p>
-        </div>
+      {movie.Response === "False" ? (
+        <h1>Movie not found</h1>
+      ) : (
+        Object.keys(movie).length > 0 && (
+          <div>
+            <img alt="Picture of the author" src={movie.Poster} />
+            <h1>
+              {movie.Title} ({movie.Year})
+            </h1>
+            <p>By {movie.Director}</p>
+            <p>Starring {movie.Actors}</p>
+            <p>{movie.Plot}</p>
+            <p>{movie.Awards}</p>
+            <p> rating: {movie.imdbRating}/10</p>
+          </div>
+        )
       )}
     </div>
   );
