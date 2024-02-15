@@ -17,13 +17,23 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Movie Search</h1>
-      <label>
-        Title:
-        <input onChange={(e) => setTitle(e.target.value)} />
-      </label>
-      <button onClick={() => getData()}>Search</button>
-
+      <div className="header">
+        <h1 className="title">Movie Search</h1>
+        <div className="search-bar">
+          <label>
+            Title:
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              onKeyUp={(event) => {
+                if (event.key === "Enter") {
+                  getData();
+                }
+              }}
+            />
+          </label>
+          <button onClick={() => getData()}>Search</button>
+        </div>
+      </div>
       {Object.keys(movie).length > 0 && (
         <div>
           <img alt="Picture of the author" src={movie.Poster} />
